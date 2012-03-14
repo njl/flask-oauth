@@ -176,6 +176,26 @@ The `APP_ID` and `APP_SECRET` can be retrieved from the facebook app
 control panel.  If you don't have an application registered yet you can do
 this at `facebook.com/developers <https://www.facebook.com/developers/createapp.php>`_.
 
+Google OAuth
+------------
+
+For Google, an additional argument is required. In addition to the
+other arguments, you must include an additional parameter of 
+`additional_remote_args`, with an argument of `{'grant_type': 'authorization_code'}`.
+
+    google = oauth.remote_app('google', 
+        base_url='https://accounts.google.com/',
+        request_token_url= None,
+        access_token_url='https://accounts.google.com/o/oauth2/token',
+        authorize_url='https://accounts.google.com/o/oauth2/auth',
+        consumer_key=GOOGLE_APP_ID,
+        consumer_secret=GOOGLE_APP_SECRET,
+        access_token_method='POST',
+        additional_remote_args={'grant_type': 'authorization_code'},
+        request_token_params = {'response_type':'code',
+                                'scope':'https://www.googleapis.com/auth/userinfo.email'}))
+
+
 Invoking Remote Methods
 -----------------------
 
